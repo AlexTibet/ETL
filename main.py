@@ -1,9 +1,9 @@
 import extract as ex
 
-file_path_csv_one = "ETL/input_files/csv_data_1.csv"
-file_path_csv_two = "ETL/input_files/csv_data_2.csv"
+file_path_csv_one = "./input_files/csv_data_1.csv"
+file_path_csv_two = "./input_files/csv_data_2.csv"
 
-file_path_json = "ETL/input_files/json_data.json"
+file_path_json = "./input_files/json_data.json"
 
 
 if __name__ == '__main__':
