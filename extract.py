@@ -1,5 +1,6 @@
 import csv
 import json
+import xml.etree.ElementTree as ElementTree
 
 
 def read_csv(file_path_csv):
@@ -14,3 +15,15 @@ def read_json(file_path_json):
         data = json.load(json_file)
         for row in data['fields']:
             print(row)
+
+
+def read_xml(xml_file_path):
+    tree = ElementTree.parse(xml_file_path)
+    root = tree.getroot()
+
+    for object_main_tag in root.findall('objects'):
+        data = dict()
+        object_tag = object_main_tag.findall('object')
+        for part in object_tag:
+            data[part.attrib['name']] = part.find('value').text
+        print(data)
