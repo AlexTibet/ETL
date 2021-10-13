@@ -1,6 +1,6 @@
 import os
 from extract.readers import CSVReader, JSONReader, XLSReader, Reader
-from typing import Type
+from typing import Type, NoReturn
 
 
 class Extractor:
@@ -17,17 +17,16 @@ class Extractor:
             '.json': JSONReader,
             '.xml': XLSReader,
         }
-        print(self.path)
 
     def get_data(self, path: str = default_path) -> [dict]:
-        files = os.listdir(path)
+        files: list = os.listdir(path)
 
         for file in files:
             self._extract_data(file, path)
 
         return self.data
 
-    def _extract_data(self, file, path):
+    def _extract_data(self, file: str, path: str) -> NoReturn:
         filename, file_extension = os.path.splitext(file)
         filepath = os.path.join(path, file)
 
