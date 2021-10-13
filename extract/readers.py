@@ -6,9 +6,12 @@ from abc import ABC
 
 
 class Reader(ABC):
-    data = []
+    data: list[dict]
 
-    def get_data(self, file_path):
+    def __init__(self):
+        self.data = []
+
+    def get_data(self, file_path: str) -> list[dict]:
         pass
 
     def _parse_file(self, file):
@@ -17,7 +20,7 @@ class Reader(ABC):
 
 class CSVReader(Reader):
 
-    def get_data(self, file_path: str) -> [dict]:
+    def get_data(self, file_path: str) -> list[dict]:
         with open(file_path, 'r') as csv_file:
             self._parse_file(csv_file)
         return self.data
@@ -30,7 +33,7 @@ class CSVReader(Reader):
 
 class JSONReader(Reader):
 
-    def get_data(self, file_path: str) -> [dict]:
+    def get_data(self, file_path: str) -> list[dict]:
         with open(file_path) as json_file:
             self._parse_file(json_file)
         return self.data
@@ -43,7 +46,7 @@ class JSONReader(Reader):
 
 class XLSReader(Reader):
 
-    def get_data(self, file_path: str) -> [dict]:
+    def get_data(self, file_path: str) -> list[dict]:
         tree = ElementTree.parse(file_path)
         root = tree.getroot()
 
